@@ -53,6 +53,7 @@ namespace Kyrs {
 
 
 
+
 	private: System::Windows::Forms::CheckBox^  checkBox1;
 
 	private: void creatTree(System::Windows::Forms::TreeView^, bool);
@@ -83,14 +84,14 @@ namespace Kyrs {
 		/// </summary>
 		void InitializeComponent(void)
 		{
-			System::Windows::Forms::DataVisualization::Charting::ChartArea^  chartArea2 = (gcnew System::Windows::Forms::DataVisualization::Charting::ChartArea());
-			System::Windows::Forms::DataVisualization::Charting::Legend^  legend2 = (gcnew System::Windows::Forms::DataVisualization::Charting::Legend());
-			System::Windows::Forms::DataVisualization::Charting::Series^  series3 = (gcnew System::Windows::Forms::DataVisualization::Charting::Series());
-			System::Windows::Forms::DataVisualization::Charting::Series^  series4 = (gcnew System::Windows::Forms::DataVisualization::Charting::Series());
+			System::Windows::Forms::DataVisualization::Charting::ChartArea^  chartArea1 = (gcnew System::Windows::Forms::DataVisualization::Charting::ChartArea());
+			System::Windows::Forms::DataVisualization::Charting::Legend^  legend1 = (gcnew System::Windows::Forms::DataVisualization::Charting::Legend());
+			System::Windows::Forms::DataVisualization::Charting::Series^  series1 = (gcnew System::Windows::Forms::DataVisualization::Charting::Series());
+			System::Windows::Forms::DataVisualization::Charting::Series^  series2 = (gcnew System::Windows::Forms::DataVisualization::Charting::Series());
 			this->menuStrip1 = (gcnew System::Windows::Forms::MenuStrip());
 			this->toolStripMenuItem1 = (gcnew System::Windows::Forms::ToolStripMenuItem());
-			this->menuItemOpen = (gcnew System::Windows::Forms::ToolStripMenuItem());
 			this->menuItemExit = (gcnew System::Windows::Forms::ToolStripMenuItem());
+			this->menuItemOpen = (gcnew System::Windows::Forms::ToolStripMenuItem());
 			this->toolStripMenuItem2 = (gcnew System::Windows::Forms::ToolStripMenuItem());
 			this->tabControl1 = (gcnew System::Windows::Forms::TabControl());
 			this->tabPage1 = (gcnew System::Windows::Forms::TabPage());
@@ -100,14 +101,14 @@ namespace Kyrs {
 			this->button1 = (gcnew System::Windows::Forms::Button());
 			this->checkBox2 = (gcnew System::Windows::Forms::CheckBox());
 			this->tabPage2 = (gcnew System::Windows::Forms::TabPage());
+			this->labelWooman = (gcnew System::Windows::Forms::Label());
+			this->labelMan = (gcnew System::Windows::Forms::Label());
+			this->labelAll = (gcnew System::Windows::Forms::Label());
 			this->chart1 = (gcnew System::Windows::Forms::DataVisualization::Charting::Chart());
 			this->tabPage3 = (gcnew System::Windows::Forms::TabPage());
 			this->tableLayoutPanel1 = (gcnew System::Windows::Forms::TableLayoutPanel());
 			this->richTextBox1 = (gcnew System::Windows::Forms::RichTextBox());
 			this->checkBox1 = (gcnew System::Windows::Forms::CheckBox());
-			this->labelAll = (gcnew System::Windows::Forms::Label());
-			this->labelMan = (gcnew System::Windows::Forms::Label());
-			this->labelWooman = (gcnew System::Windows::Forms::Label());
 			this->menuStrip1->SuspendLayout();
 			this->tabControl1->SuspendLayout();
 			this->tabPage1->SuspendLayout();
@@ -143,19 +144,19 @@ namespace Kyrs {
 			this->toolStripMenuItem1->Size = System::Drawing::Size(48, 20);
 			this->toolStripMenuItem1->Text = L"Файл";
 			// 
-			// menuItemOpen
-			// 
-			this->menuItemOpen->Name = L"menuItemOpen";
-			this->menuItemOpen->Size = System::Drawing::Size(121, 22);
-			this->menuItemOpen->Text = L"Открыть";
-			this->menuItemOpen->Click += gcnew System::EventHandler(this, &MyForm::menuItemOpen_Click);
-			// 
 			// menuItemExit
 			// 
 			this->menuItemExit->Name = L"menuItemExit";
-			this->menuItemExit->Size = System::Drawing::Size(121, 22);
+			this->menuItemExit->Size = System::Drawing::Size(290, 22);
 			this->menuItemExit->Text = L"Выход";
 			this->menuItemExit->Click += gcnew System::EventHandler(this, &MyForm::menuItemExit_Click);
+			// 
+			// menuItemOpen
+			// 
+			this->menuItemOpen->Name = L"menuItemOpen";
+			this->menuItemOpen->Size = System::Drawing::Size(290, 22);
+			this->menuItemOpen->Text = L"Скачать с сервера файл конфигурации";
+			this->menuItemOpen->Click += gcnew System::EventHandler(this, &MyForm::menuItemOpen_Click);
 			// 
 			// toolStripMenuItem2
 			// 
@@ -261,29 +262,56 @@ namespace Kyrs {
 			this->tabPage2->Text = L"Графики";
 			this->tabPage2->UseVisualStyleBackColor = true;
 			// 
+			// labelWooman
+			// 
+			this->labelWooman->AutoSize = true;
+			this->labelWooman->Location = System::Drawing::Point(212, 404);
+			this->labelWooman->Name = L"labelWooman";
+			this->labelWooman->Size = System::Drawing::Size(69, 13);
+			this->labelWooman->TabIndex = 4;
+			this->labelWooman->Text = L"Женщин: 50";
+			// 
+			// labelMan
+			// 
+			this->labelMan->AutoSize = true;
+			this->labelMan->Location = System::Drawing::Point(142, 404);
+			this->labelMan->Name = L"labelMan";
+			this->labelMan->Size = System::Drawing::Size(64, 13);
+			this->labelMan->TabIndex = 3;
+			this->labelMan->Text = L"Мужчин: 50";
+			// 
+			// labelAll
+			// 
+			this->labelAll->AutoSize = true;
+			this->labelAll->Location = System::Drawing::Point(8, 404);
+			this->labelAll->Name = L"labelAll";
+			this->labelAll->Size = System::Drawing::Size(128, 13);
+			this->labelAll->TabIndex = 1;
+			this->labelAll->Text = L"Всего сотрудников: 100";
+			// 
 			// chart1
 			// 
-			chartArea2->Name = L"ChartArea1";
-			this->chart1->ChartAreas->Add(chartArea2);
+			chartArea1->Name = L"ChartArea1";
+			this->chart1->ChartAreas->Add(chartArea1);
 			this->chart1->Cursor = System::Windows::Forms::Cursors::Default;
 			this->chart1->ImeMode = System::Windows::Forms::ImeMode::NoControl;
-			legend2->Name = L"Legend1";
-			this->chart1->Legends->Add(legend2);
+			legend1->Name = L"Legend1";
+			this->chart1->Legends->Add(legend1);
 			this->chart1->Location = System::Drawing::Point(3, 3);
 			this->chart1->Name = L"chart1";
 			this->chart1->Palette = System::Windows::Forms::DataVisualization::Charting::ChartColorPalette::SemiTransparent;
-			series3->ChartArea = L"ChartArea1";
-			series3->ChartType = System::Windows::Forms::DataVisualization::Charting::SeriesChartType::StackedColumn;
-			series3->Legend = L"Legend1";
-			series3->Name = L"Мужчины";
-			series3->YValuesPerPoint = 4;
-			series4->ChartArea = L"ChartArea1";
-			series4->ChartType = System::Windows::Forms::DataVisualization::Charting::SeriesChartType::StackedColumn;
-			series4->Legend = L"Legend1";
-			series4->Name = L"Женщины";
-			series4->YValuesPerPoint = 2;
-			this->chart1->Series->Add(series3);
-			this->chart1->Series->Add(series4);
+			series1->ChartArea = L"ChartArea1";
+			series1->ChartType = System::Windows::Forms::DataVisualization::Charting::SeriesChartType::StackedColumn;
+			series1->Legend = L"Legend1";
+			series1->Name = L"Мужчины";
+			series1->YValuesPerPoint = 4;
+			series2->ChartArea = L"ChartArea1";
+			series2->ChartType = System::Windows::Forms::DataVisualization::Charting::SeriesChartType::StackedColumn;
+			series2->Legend = L"Legend1";
+			series2->Name = L"Женщины";
+			series2->YValuesPerPoint = 2;
+			this->chart1->Series->Add(series1);
+			this->chart1->Series->Add(series2);
 			this->chart1->Size = System::Drawing::Size(739, 398);
 			this->chart1->TabIndex = 0;
 			this->chart1->Text = L"chart1";
@@ -333,33 +361,6 @@ namespace Kyrs {
 			this->checkBox1->UseVisualStyleBackColor = true;
 			this->checkBox1->CheckedChanged += gcnew System::EventHandler(this, &MyForm::checkBox1_CheckedChanged);
 			// 
-			// labelAll
-			// 
-			this->labelAll->AutoSize = true;
-			this->labelAll->Location = System::Drawing::Point(8, 404);
-			this->labelAll->Name = L"labelAll";
-			this->labelAll->Size = System::Drawing::Size(128, 13);
-			this->labelAll->TabIndex = 1;
-			this->labelAll->Text = L"Всего сотрудников: 100";
-			// 
-			// labelMan
-			// 
-			this->labelMan->AutoSize = true;
-			this->labelMan->Location = System::Drawing::Point(142, 404);
-			this->labelMan->Name = L"labelMan";
-			this->labelMan->Size = System::Drawing::Size(64, 13);
-			this->labelMan->TabIndex = 3;
-			this->labelMan->Text = L"Мужчин: 50";
-			// 
-			// labelWooman
-			// 
-			this->labelWooman->AutoSize = true;
-			this->labelWooman->Location = System::Drawing::Point(212, 404);
-			this->labelWooman->Name = L"labelWooman";
-			this->labelWooman->Size = System::Drawing::Size(69, 13);
-			this->labelWooman->TabIndex = 4;
-			this->labelWooman->Text = L"Женщин: 50";
-			// 
 			// MyForm
 			// 
 			this->AutoScaleDimensions = System::Drawing::SizeF(6, 13);
@@ -397,6 +398,28 @@ namespace Kyrs {
 
 	private: System::Void menuItemOpen_Click(System::Object^  sender, System::EventArgs^  e) {
 		this->menuItemOpen->Enabled = false;
+		system("dir");
+		system("dir ConfigAndData");
+		remove("ConfigAndData/lvls.list");
+		if (_rmdir("ConfigAndData") == 0)
+			printf("Directory 'ConfigAndData' was successfully removed\n Надеюсь там не было важных данных?\n");
+		else {
+			printf("Problem removing directory 'ConfigAndData'\n");
+			printf("В папке ConfigAndData нет лишних файлов, не хочу удалить что-то важное?\n");
+			system("pause");
+			exit(1);
+		}
+		if (_mkdir("ConfigAndData") == 0) {
+			printf("Directory 'ConfigAndData' was successfully created\n");
+			URLDownloadToFileW(0, L"http://sitecorrectly.com/Project/lvls.list", L"ConfigAndData/lvls.list", 0, 0);
+			MessageBox::Show("Похоже то что я нашёл подходит!\nЗапускай программу ещё раз!", "Это успех", MessageBoxButtons::OK, MessageBoxIcon::Information);
+			exit(0);
+		}
+		else {
+			printf("Problem creating directory 'ConfigAndData'\n");
+			system("pause");
+			exit(1);
+		}
 	}
 	private: System::Void checkBox1_CheckedChanged(System::Object^  sender, System::EventArgs^  e) {
 		creatNameList(this->richTextBox1, checkBox1->Checked);

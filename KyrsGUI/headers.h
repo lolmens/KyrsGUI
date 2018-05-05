@@ -10,3 +10,6 @@
 #include <windows.h>
 #include <clocale>
 #include <string>
+#include <urlmon.h>
+#include <direct.h>
+#pragma comment (lib, "urlmon.lib")

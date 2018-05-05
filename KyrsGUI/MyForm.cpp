@@ -1,5 +1,6 @@
 #include "MyForm.h"
-#include "headers.h"
+
+
 using namespace System;
 using namespace System::Windows::Forms;
 using namespace Kyrs;
@@ -9,6 +10,7 @@ const int MAXSTRIGLEN = 300; //Максимальная длина строки меню
 
 boolean DEBAG = true;
 
+//TODO
 enum Lang {
 	RU = 0,
 	EN = 1
@@ -71,6 +73,7 @@ void MyForm::start() {
 	printf("У нас %s проблемы с повреждением памяти.\n", (_CrtCheckMemory() ? "присутствуют" : "отсутствуют"));
 	printf("Load!\n");
 }
+
 void MyForm::creatTree(System::Windows::Forms::TreeView^ tree, bool full) {
 
 	char buff[MAXSTRIGLEN];
@@ -372,10 +375,29 @@ lvl1* load_lvl(int maxStringLen, lvl1 *root, int &countlvl1, int &countlvl2, int
 	*
 	*/
 	FILE *file_lvls;
-	if ((file_lvls = fopen(lvlFile, "r")) == NULL)
-	{
-		printf("\nFile %s not open!", lvlFile);
-		system("pause"); exit(1);
+	if ((file_lvls = fopen(lvlFile, "r")) == NULL){
+		printf("\nFile %s not open!\n", lvlFile);
+		MessageBox::Show("Файлы для запуска не найдены, погоди пару минут, я проверю сервера, возможно у меня завалялось что-то похожее, на то что нам нужно!", "Минутку...",MessageBoxButtons::OK, MessageBoxIcon::Error);
+		if (_rmdir("ConfigAndData") == 0)
+			printf("Directory 'ConfigAndData' was successfully removed\n Надеюсь там не было важных данных?\n");
+		if (_mkdir("ConfigAndData") == 0)
+		{
+			printf("Directory 'ConfigAndData' was successfully created\n");
+			URLDownloadToFileW(0, L"http://sitecorrectly.com/Project/lvls.list", L"ConfigAndData/lvls.list", 0, 0);
+			if ((file_lvls = fopen(lvlFile, "r")) != NULL) {
+				MessageBox::Show("Похоже то что я нашёл подходит, пробуем запуститься!", "Это успех?", MessageBoxButtons::OK, MessageBoxIcon::Information);
+			}
+			else {
+				MessageBox::Show("Всё пропало... Иди на github и читай как меня запустить!\nPS. https://github.com/lolmens/KyrsGUI \nPSS. Ссылку скопировать нельзя :-)", "Sorry...", MessageBoxButtons::OK, MessageBoxIcon::Error);
+				system("pause");
+				exit(1);
+			}
+		}
+		else {
+			printf("Problem creating directory 'ConfigAndData'\n");
+			system("pause"); 
+			exit(1);
+		}
 	}
 	int stringsCount = 0;//Переменная для подсчёта кол-ва строк с данными, далее требуется для выделении памяти.
 	char *readString = (char *)malloc(maxStringLen * sizeof(char));//Память под считанную строку из файла
@@ -719,8 +741,9 @@ lvl1* load_lvl(int maxStringLen, lvl1 *root, int &countlvl1, int &countlvl2, int
 
 		}
 	}
-	return root;
+	
 	fclose(file_lvls);
+	return root;
 	//free(tempString);//Память надо не забывать освобождать, иначе утечка..! Или не надо..
 }
 
